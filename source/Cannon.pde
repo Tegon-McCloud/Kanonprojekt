@@ -1,4 +1,4 @@
-class Cannon extends BallInteracter {
+class Cannon {
  
   PVector location;
   
@@ -7,8 +7,9 @@ class Cannon extends BallInteracter {
   }
   
    void display() {
-    float angle = atan2(mouseY-225*PI, mouseX);
 
+    float angle = atan2(mouseY-225*PI, mouseX);
+     
     stroke(0);
     fill(0);
     pushMatrix();
@@ -19,8 +20,8 @@ class Cannon extends BallInteracter {
     popMatrix();
   }
   
-  void interact(CannonBall b) {
-  
-  }
+  CannonBall shoot(int x, int y) {
+    return new CannonBall(location, PVector.sub(new PVector(x, y), location));
+  };
   
 }

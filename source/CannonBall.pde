@@ -19,7 +19,7 @@ class CannonBall {
     acc.set(0.0f, 0.0f);
   }
   
-  void draw() {
+  void display() {
     stroke(0.0f);
     strokeWeight(3.0f);
     fill(0.3f);

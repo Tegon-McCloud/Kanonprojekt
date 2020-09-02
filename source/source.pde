@@ -1,5 +1,10 @@
-CannonBall b = new CannonBall(new PVector(300, 300), new PVector(10, -1000));
-Cannon C = new Cannon();
+import java.util.List;
+import java.util.ArrayList;
+
+Cannon cannon = new Cannon();
+
+List<CannonBall> cannonBalls = new ArrayList<CannonBall>();
+List<BallInteracter> interacters = new ArrayList<BallInteracter>();
 
 long t0;
 long t1;
@@ -8,12 +13,12 @@ boolean start = true;
 
 void setup() {
   size(1280, 720);
-  
+
   t0 = System.nanoTime();
 }
 
 void draw() {
-    clear();
+  clear();
   background (255, 216, 182);
   if (start == true) {
     textSize(24);
@@ -23,19 +28,29 @@ void draw() {
     }
   }
 
-  b.draw();
-  C.display();
-  
   t1 = System.nanoTime();
-  
   dt = (t1 - t0) / 1e9;
+
+  for (BallInteracter bi : interacters) {
+    for (CannonBall cb : cannonBalls) {
+      bi.interact(cb);
+    }
+  }
+
+  for (CannonBall cb : cannonBalls) {
+    cb.update(dt);
+    cb.display();
+  }
   
-  b.applyForce(new PVector(0.0f, 300.0f));
-  b.update(dt);
-  
-  println(dt);
+  cannon.display();
   
   t0 = System.nanoTime();
-  
-  
+}
+
+void mouseMoved(MouseEvent e) {
+  cannon.aim(e.getX(), e.getY());
+}
+
+void mousePressed(MouseEvent e){
+  cannonBalls.add(cannon.shoot());
 }

@@ -1,4 +1,5 @@
 CannonBall b = new CannonBall(new PVector(300, 300), new PVector(10, -1000));
+Cannon C = new Cannon();
 
 long t0;
 long t1;
@@ -23,6 +24,7 @@ void draw() {
   }
 
   b.draw();
+  C.display();
   
   t1 = System.nanoTime();
   

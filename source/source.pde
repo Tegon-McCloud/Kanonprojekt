@@ -30,6 +30,7 @@ void draw() {
 
   t1 = System.nanoTime();
   dt = (t1 - t0) / 1e9;
+  t0 = System.nanoTime();
 
   for (BallInteracter bi : interacters) {
     for (CannonBall cb : cannonBalls) {
@@ -44,13 +45,9 @@ void draw() {
   
   cannon.display();
   
-  t0 = System.nanoTime();
 }
 
-void mouseMoved(MouseEvent e) {
-  cannon.aim(e.getX(), e.getY());
-}
 
 void mousePressed(MouseEvent e){
-  cannonBalls.add(cannon.shoot());
+  cannonBalls.add(cannon.shoot(e.getX(), e.getY()));
 }

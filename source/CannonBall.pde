@@ -22,7 +22,7 @@ class CannonBall {
   void display() {
     stroke(0.0f);
     strokeWeight(3.0f);
-    fill(0.3f);
+    fill(100.0f);
     
     ellipse(pos.x, pos.y, 20.0f, 20.0f);
   }

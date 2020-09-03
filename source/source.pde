@@ -16,8 +16,9 @@ boolean start = true;
 void setup() {
   size(1280, 720);
   
-  interacters.add(new Gravity(900.0f));
+  interacters.add(new Gravity(2000.0f));
   interacters.add(new Wind(500.0f));
+  
   tstart = System.nanoTime();
   tlast = tstart;
   
@@ -40,6 +41,8 @@ void draw() {
   tlast = tnow;
 
   for (BallInteracter bi : interacters) {
+    bi.update(t);
+    
     for (CannonBall cb : cannonBalls) {
       bi.interact(cb);
     }

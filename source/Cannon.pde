@@ -21,7 +21,7 @@ class Cannon {
   }
   
   CannonBall shoot(int x, int y) {
-    return new CannonBall(location, PVector.sub(new PVector(x, y), location).normalize().mult(1000.0f));
+    return new CannonBall(location, PVector.sub(new PVector(x, y), location).normalize().mult(4000.0f));
   };
   
 }

@@ -6,15 +6,21 @@ Cannon cannon = new Cannon();
 List<CannonBall> cannonBalls = new ArrayList<CannonBall>();
 List<BallInteracter> interacters = new ArrayList<BallInteracter>();
 
-long t0;
-long t1;
+long tstart;
+long tlast;
+long tnow;
+float t;
 float dt;
 boolean start = true;
 
 void setup() {
   size(1280, 720);
-
-  t0 = System.nanoTime();
+  
+  interacters.add(new Gravity(900.0f));
+  interacters.add(new Wind(500.0f));
+  tstart = System.nanoTime();
+  tlast = tstart;
+  
 }
 
 void draw() {
@@ -27,15 +33,18 @@ void draw() {
       start = false;
     }
   }
-
-  t1 = System.nanoTime();
-  dt = (t1 - t0) / 1e9;
-  t0 = System.nanoTime();
+  
+  tnow = System.nanoTime();
+  dt = (tnow - tlast) / 1e9;
+  t = (tnow - tstart) / 1e9;
+  tlast = tnow;
 
   for (BallInteracter bi : interacters) {
     for (CannonBall cb : cannonBalls) {
       bi.interact(cb);
     }
+    
+    bi.display();
   }
 
   for (CannonBall cb : cannonBalls) {

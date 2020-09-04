@@ -35,7 +35,7 @@ class Target extends BallInteracter {
 
   @Override
     void display() {
-    strokeWeight(5);
+    strokeWeight(3);
     stroke(0.0f);
     
     fill(255, 0, 0);

@@ -1,9 +1,11 @@
 class Cannon {
  
   PVector location;
+  PImage firepower;
   
   Cannon() {
-    location =  new PVector(0, height+600);
+    location =  new PVector(0, height);
+    firepower = loadImage("Firepower.png");
   }
   
    void display() {
@@ -16,7 +18,7 @@ class Cannon {
     rectMode(CENTER);
     translate(location.x, location.y);
     rotate(angle);
-    rect(0, 0,150,50);
+    image(firepower, 0, 0,150,50);
     popMatrix();
   }
   

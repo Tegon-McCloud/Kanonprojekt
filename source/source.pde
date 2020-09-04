@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-Cannon cannon = new Cannon();
+Cannon cannon;
 
 List<CannonBall> cannonBalls = new ArrayList<CannonBall>();
 List<CannonBall> removeBalls = new ArrayList<CannonBall>();
@@ -27,6 +27,9 @@ void setup() {
   imageMode(CENTER);
   logo = loadImage("GoCannonGo.png");
   bg = loadImage("Outlands.png");
+
+
+  cannon = new Cannon();
 
   interacters.add(new Gravity(2000.0f));
   interacters.add(new Wind(500.0f));

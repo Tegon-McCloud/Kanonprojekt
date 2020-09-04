@@ -25,10 +25,11 @@ class Target extends BallInteracter {
     
       if (bPos.x>pos.x-radius && 
       bPos.x<pos.x+radius &&
-      bPos.y>pos.y &&
+      bPos.y>pos.y-20 &&
       bPos.y<pos.y+20) {
       reposition();
       onHit();
+      removeBalls.add(cb);
     }
   }
 

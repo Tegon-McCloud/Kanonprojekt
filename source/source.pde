@@ -14,8 +14,16 @@ float dt;
 boolean start = true;
 int score = 0;
 
+PImage logo;
+PImage bg;
+
 void setup() {
   size(1280, 720);
+  
+  
+  imageMode(CENTER);
+  logo = loadImage("GoCannonGo.png");
+  bg = loadImage("Outlands.png");
   
   interacters.add(new Gravity(2000.0f));
   interacters.add(new Wind(500.0f));
@@ -28,13 +36,21 @@ void setup() {
 void draw() {
   clear();
   background (255, 216, 182);
-  text("Din score: "+score, 10,250);
+  image(bg, width/2, height/2);
   if (start == true) {
-    textSize(24);
-    text("Du har 30 sekunder til at skyde før spillet slutter\nDu skyder med kanonen ved at klikke på venstre museknap\nDu kan ændre vinklen på kanonen ved at rykke din mus\nDu starter spillet ved at skyde og du kan starte forfra ved at klikke r", 320, 50);
+    textSize(22);
+    stroke(0.0f);
+    
+    image(logo, 250, 150, 450, 250);
+    text("Du har 30 sekunder til at skyde før spillet slutter\nDu skyder med kanonen ved at klikke på venstre museknap\nDu kan ændre vinklen på kanonen ved at rykke din mus\nDu starter spillet ved at skyde og du kan starte forfra ved at klikke r", 500, 70);
     if (mousePressed == true ) {
       start = false;
+       
     }
+      
+  } else {
+    textSize(55);
+  text(score, width/2,50);
   }
   
   tnow = System.nanoTime();
@@ -49,7 +65,9 @@ void draw() {
       bi.interact(cb);
     }
     
+    if (start == false) {
     bi.display();
+    }
   }
 
   for (CannonBall cb : cannonBalls) {

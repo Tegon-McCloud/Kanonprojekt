@@ -25,7 +25,7 @@ class Wind extends BallInteracter {
 
   @Override
   void display() {
-    stroke(0.0f);
+    stroke(0f, 0f,200.0f);
     strokeWeight(1.0f);
 
     for (int i = 0; i < width/20; i++) {

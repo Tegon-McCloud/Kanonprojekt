@@ -34,7 +34,8 @@ class Target extends BallInteracter {
 
   @Override
     void display() {
-    strokeWeight(2);
+    strokeWeight(5);
+    stroke(0.0f);
     
     fill(255, 0, 0);
     ellipse(pos.x, pos.y, 120, 50);

@@ -16,6 +16,7 @@ boolean start = true;
 int score = 0;
 float gameTime = 30;
 float tGameStart;
+float tLastShot;
 
 PImage logo;
 PImage bg;
@@ -36,13 +37,13 @@ void setup() {
 
 void draw() {
   clear();
-  background (255, 216, 182);
   image(bg, width/2, height/2);
 
   textSize(22);
   stroke(0.0f);
   fill(0.0f);
   text("Din score: "+score, width/2, 32);
+  text("Tid: " + (30+tGameStart - t), width/2, 64);
 
   if (start) {
 
@@ -98,7 +99,10 @@ void mousePressed(MouseEvent e) {
   if (start) {
     gameStart();
   }
-  cannonBalls.add(cannon.shoot(e.getX(), e.getY()));
+  if (tLastShot+0.5f < t) {
+    cannonBalls.add(cannon.shoot(e.getX(), e.getY()));
+    tLastShot = t;
+  }
 }
 
 void onHit() {

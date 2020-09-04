@@ -27,12 +27,14 @@ class Wind extends BallInteracter {
   void display() {
     stroke(0f, 0f,200.0f);
     strokeWeight(1.0f);
+    fill(0.0f, 0.0f, 0.0f, 0.0f);
 
-    for (int i = 0; i < width/20; i++) {
-      for (int j = 0; j < height/20; j++) {
-        PVector pos = new PVector(i * 20.0f + 10.0f, j * 20.0f + 10.0f);
-        PVector dir = nf.get(pos).normalize().mult(10.0f);
+    for (int i = 0; i < width/40; i++) {
+      for (int j = 0; j < height/40; j++) {
+        PVector pos = new PVector(i * 40.0f + 20.0f, j * 40.0f + 20.0f);
+        PVector dir = nf.get(pos).normalize().mult(20.0f);
         line(pos.x, pos.y, pos.x + dir.x, pos.y + dir.y);
+        ellipse(pos.x, pos.y, 10.0f, 10.0f);
       }
     }
   }

@@ -43,13 +43,14 @@ void draw() {
   stroke(0.0f);
   fill(0.0f);
   text("Din score: "+score, width/2, 32);
-  text("Tid: " + (30+tGameStart - t), width/2, 64);
-
+  
   if (start) {
 
     image(logo, 250, 150, 450, 250);
     text("Du har 30 sekunder til at skyde før spillet slutter\nDu skyder med kanonen ved at klikke på venstre museknap\nDu kan ændre vinklen på kanonen ved at rykke din mus\nDu starter spillet ved at skyde og du kan starte forfra ved at klikke r", 500, 70);
   } else {
+    text("Tid: " + floor(30+tGameStart - t), width/2, 64);
+    
     if (tGameStart+30<t) {
       gameEnded();
 

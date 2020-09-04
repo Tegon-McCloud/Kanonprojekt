@@ -17,8 +17,15 @@ int score = 0;
 float gameTime = 30;
 float tGameStart;
 
+PImage logo;
+PImage bg;
+
 void setup() {
   size(1280, 720);
+
+  imageMode(CENTER);
+  logo = loadImage("GoCannonGo.png");
+  bg = loadImage("Outlands.png");
 
   interacters.add(new Gravity(2000.0f));
   interacters.add(new Wind(500.0f));
@@ -30,13 +37,29 @@ void setup() {
 void draw() {
   clear();
   background (255, 216, 182);
-  text("Din score: "+score, 10, 250);
+  image(bg, width/2, height/2);
+
+  textSize(22);
+  stroke(0.0f);
+  fill(0.0f);
+  text("Din score: "+score, width/2, 32);
+
   if (start) {
-    textSize(24);
-    text("Du har 30 sekunder til at skyde før spillet slutter\nDu skyder med kanonen ved at klikke på venstre museknap\nDu kan ændre vinklen på kanonen ved at rykke din mus\nDu starter spillet ved at skyde og du kan starte forfra ved at klikke r", 320, 50);
+
+    image(logo, 250, 150, 450, 250);
+    text("Du har 30 sekunder til at skyde før spillet slutter\nDu skyder med kanonen ved at klikke på venstre museknap\nDu kan ændre vinklen på kanonen ved at rykke din mus\nDu starter spillet ved at skyde og du kan starte forfra ved at klikke r", 500, 70);
   } else {
-    if (tGameStart+10<t) {
+    if (tGameStart+30<t) {
       gameEnded();
+
+      if (start == true) {
+        if (mousePressed == true ) {
+          start = false;
+        }
+      } else {
+        textSize(55);
+        text(score, width/2, 50);
+      }
     }
   }
 
@@ -45,14 +68,16 @@ void draw() {
   t = (tnow - tstart) / 1e9;
   tlast = tnow;
 
+
   for (BallInteracter bi : interacters) {
     bi.update(t);
 
     for (CannonBall cb : cannonBalls) {
       bi.interact(cb);
     }
-
-    bi.display();
+    if (start == false) {
+      bi.display();
+    }
   }
 
   for (CannonBall cb : cannonBalls) {
@@ -61,6 +86,7 @@ void draw() {
   }
 
   cannon.display();
+
   for (CannonBall cb : removeBalls) {
     cannonBalls.remove(cb);
   }
@@ -68,11 +94,11 @@ void draw() {
 
 
 void mousePressed(MouseEvent e) {
- 
+
   if (start) {
     gameStart();
   }
-   cannonBalls.add(cannon.shoot(e.getX(), e.getY()));
+  cannonBalls.add(cannon.shoot(e.getX(), e.getY()));
 }
 
 void onHit() {
@@ -83,12 +109,11 @@ void onHit() {
 void gameStart() {
   start = false;
   tGameStart = t;
-  cannonBalls.clear();
-  removeBalls.clear();
   score = 0;
 }
 
-void gameEnded(){
- start = true; 
-  
+void gameEnded() {
+  start = true;
+  cannonBalls.clear();
+  removeBalls.clear();
 }

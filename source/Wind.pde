@@ -18,7 +18,7 @@ class Wind extends BallInteracter {
     float relVelMag2 = relVel.dot(relVel);
     relVel.normalize();
     relVel.mult(relVelMag2);
-    relVel.mult(0.001f);
+    relVel.mult(0.00095f);
 
     cb.applyForce(relVel);
   }
